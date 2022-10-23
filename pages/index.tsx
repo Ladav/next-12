@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import Date from '../components/date/date'
 import Layout from '../components/layout/layout'
 import { getSortedPostsData } from '../utils/post.utils'
 
@@ -24,10 +25,11 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
         <section className="w-full h-full mt-8">
           <ul className="flex flex-col items-center justify-center gap-4">
             {posts.map((post) => (
-              <li key={post.id} className="w-full">
-                <h3>
-                  <Link href={`/posts/${post.id}`}>{`${post.title} ${post.date}`}</Link>
-                </h3>
+              <li key={post.id} className="flex flex-col w-full">
+                <Link href={`/posts/${post.id}`}>
+                  <a className="text-lg text-semibold">{post.title}</a>
+                </Link>
+                <Date dateString={post.date} />
               </li>
             ))}
           </ul>
